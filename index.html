@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cryptography Security System</title>
+    <link rel="stylesheet" href="style.css">
+  
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#keyless-cipher">Keyless Cipher</a></li>
+                <li><a href="#caesar-cipher">Caesar Cipher</a></li>
+                <li><a href="#mono-alphabetic-cipher">Mono Alphabetic Cipher</a></li>
+                <li><a href="#vernam-cipher">Vernam Cipher</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home">
+            <h1>Welcome to Cryptography Security System</h1>
+            <h2>
+                Our site is dedicated to exploring various encryption techniques to enhance digital security.
+                We provide tools and information on different cipher methods to help you understand and
+                implement cryptographic solutions.
+            </h2>
+        </section>
+
+        <section id="keyless-cipher">
+            <div class="section-title">Keyless Cipher</div>
+            <div class="container">
+                <div class="box">
+                    <h2>Controls</h2>
+                    <form id="keyless-controls">
+                        <div class="row">
+                            <label>
+                                <input type="radio" name="code" value="encode" checked="checked">
+                                Encode
+                            </label>
+                            <label>
+                                <input type="radio" name="code" value="decode">
+                                Decode
+                            </label>
+                        </div>
+                        <div class="row">
+                            <label for="keyless-type">Cipher Type</label>
+                            <select name="keyless-type" id="keyless-type">
+                                <option value="atbash">Atbash Cipher</option>
+                                <option value="rot13">ROT13 Cipher</option>
+                            </select>
+                        </div>
+                        <input type="submit" value="Submit">
+                    </form>
+                </div>
+                <div class="box">
+                    <h2>Plaintext</h2>
+                    <textarea placeholder="Enter plaintext" id="keyless-input-text"></textarea>
+                </div>
+                <div class="box">
+                    <h2>Ciphertext</h2>
+                    <textarea readonly placeholder="Output" id="keyless-output-text"></textarea>
+                </div>
+            </div>
+        </section>
+
+        <section id="caesar-cipher">
+            <div class="section-title">Caesar Cipher</div>
+            <div class="container">
+                <div class="box">
+                    <h2>Controls</h2>
+                    <form id="caesar-controls">
+                        <div class="row">
+                            <label>
+                                <input type="radio" name="code" value="encode" checked="checked">
+                                Encode
+                            </label>
+                            <label>
+                                <input type="radio" name="code" value="decode">
+                                Decode
+                            </label>
+                        </div>
+                        <div class="row">
+                            <label for="shift-input">Shift Key</label>
+                            <input type="text" id="shift-input" value="3">
+                        </div>
+                        <div class="row">
+                            <label for="mod-input">Modulo</label>
+                            <input type="text" id="mod-input" value="36">
+                        </div>
+                        <div class="row">
+                            <label for="alphabet-input">Alphabet</label>
+                            <input type="text" id="alphabet-input" value="abcdefghijklmnopqrstuvwxyz0123456789">
+                        </div>
+                        <div class="row">
+                            <label for="letter-case">Letter Case</label>
+                            <select id="letter-case">
+                                <option value="1">Maintain Case</option>
+                                <option value="2">Lower Case</option>
+                                <option value="3">Upper Case</option>
+                            </select>
+                        </div>
+                        <div class="row">
+                            <label for="foreign-chars">Foreign Chars</label>
+                            <select id="foreign-chars">
+                                <option value="1">Remove</option>
+                                <option value="2">Ignore</option>
+                            </select>
+                        </div>
+                        <input type="submit" value="Submit">
+                    </form>
+                </div>
+                <div class="box">
+                    <h2>Plaintext</h2>
+                    <textarea placeholder="Enter plaintext" id="caesar-input-text"></textarea>
+                </div>
+                <div class="box">
+                    <h2>Ciphertext</h2>
+                    <textarea readonly placeholder="Output" id="caesar-output-text"></textarea>
+                </div>
+            </div>
+        </section>
+
+        <section id="mono-alphabetic-cipher">
+            <div class="section-title">Mono Alphabetic Cipher</div>
+            <div class="container">
+                <div class="box">
+                    <h2>Controls</h2>
+                    <form id="mono-controls">
+                        <div class="row">
+                            <label>
+                                <input type="radio" name="code" value="encode" checked="checked">
+                                Encode
+                            </label>
+                            <label>
+                                <input type="radio" name="code" value="decode">
+                                Decode
+                            </label>
+                        </div>
+                        <div class="row">
+                            <label for="substitution-alphabet-input">Substitution Alphabet</label>
+                            <input type="text" id="substitution-alphabet-input" value="QWERTYUIOPASDFGHJKLZXCVBNM">
+                        </div>
+                        <div class="row">
+                            <label for="plain-alphabet-input">Plain Alphabet</label>
+                            <input type="text" id="plain-alphabet-input" value="ABCDEFGHIJKLMNOPQRSTUVWXYZ" readonly>
+                        </div>
+                        <div class="row">
+                            <label for="mono-letter-case">Letter Case</label>
+                            <select id="mono-letter-case">
+                                <option value="1">Maintain Case</option>
+                                <option value="2">Lower Case</option>
+                                <option value="3">Upper Case</option>
+                            </select>
+                        </div>
+                        <div class="row">
+                            <label for="mono-foreign-chars">Foreign Chars</label>
+                            <select id="mono-foreign-chars">
+                                <option value="1">Remove</option>
+                                <option value="2">Ignore</option>
+                            </select>
+                        </div>
+                        <input type="submit" value="Submit">
+                    </form>
+                </div>
+                <div class="box">
+                    <h2>Plaintext</h2>
+                    <textarea placeholder="Enter plaintext" id="mono-input-text"></textarea>
+                </div>
+                <div class="box">
+                    <h2>Ciphertext</h2>
+                    <textarea readonly placeholder="Output" id="mono-output-text"></textarea>
+                </div>
+            </div>
+        </section>
+
+        <section id="vernam-cipher">
+            <div class="section-title">Vernam Cipher</div>
+            <div class="container">
+                <div class="box">
+                    <h2>Controls</h2>
+                    <form id="vernam-controls">
+                        <div class="row">
+                            <label>
+                                <input type="radio" name="code" value="encode" checked="checked">
+                                Encode
+                            </label>
+                            <label>
+                                <input type="radio" name="code" value="decode">
+                                Decode
+                            </label>
+                        </div>
+                        <div class="row">
+                            <label for="vernam-key-input">Key</label>
+                            <input type="text" id="vernam-key-input" placeholder="Enter key (same length as plaintext)">
+                        </div>
+                        <div class="row">
+                            <label for="vernam-letter-case">Letter Case</label>
+                            <select id="vernam-letter-case">
+                                <option value="1">Maintain Case</option>
+                                <option value="2">Lower Case</option>
+                                <option value="3">Upper Case</option>
+                            </select>
+                        </div>
+                        <div class="row">
+                            <label for="vernam-foreign-chars">Foreign Chars</label>
+                            <select id="vernam-foreign-chars">
+                                <option value="1">Remove</option>
+                                <option value="2">Ignore</option>
+                            </select>
+                        </div>
+                        <input type="submit" value="Submit">
+                    </form>
+                </div>
+                <div class="box">
+                    <h2>Plaintext</h2>
+                    <textarea placeholder="Enter plaintext" id="vernam-input-text"></textarea>
+                </div>
+                <div class="box">
+                    <h2>Ciphertext</h2>
+                    <textarea readonly placeholder="Output" id="vernam-output-text"></textarea>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Cryptography Security System. All rights reserved.</p>
+    </footer>
+
+    <script src="caesar.js"></script>
+    <script src="keyless.js"></script>
+    <script src="mono.js"></script>
+    <script src="vernam.js"></script>
+</body>
+
+</html>

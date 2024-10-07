@@ -1,0 +1,193 @@
+/* Global Styles */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #121212;
+    color: #e0e0e0;
+    line-height: 1.6;
+}
+
+header {
+    background: #908b8b;
+    padding: 10px 0;
+    text-align: center;
+}
+
+header ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+header ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+header ul li a {
+    color: #e0e0e0;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+header ul li a:hover {
+    text-decoration: underline;
+}
+
+main {
+    padding: 20px;
+}
+
+.section-title {
+    margin: 50px 0 20px;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 4rem;
+    color: #ffeb7b;
+    text-shadow: 3px 3px 6px rgba(73, 165, 165, 0.463), 0 0 10px rgba(255, 215, 0, 0.5);
+    letter-spacing: 0.1em;
+    font-weight: bold;
+    position: relative;
+    z-index: 1;
+    transition: all 0.3s ease;
+}
+.section-title:hover {
+    color: #1e3ba6;
+    transform: scale(1.1);
+    text-shadow: 4px 4px 8px rgba(73, 165, 165, 0.6), 0 0 15px rgba(255, 215, 0, 0.7);
+    letter-spacing: 0.12em;
+    transition: all 0.3s ease-out;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.box {
+    background-color: #222;
+    border-radius: 8px;
+    padding: 20px;
+    width: 100%;
+    max-width: 300px;
+}
+
+h2 {
+    margin-bottom: 15px;
+    color: #1e90ff;
+}
+
+textarea, input[type="text"], select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #555;
+    background-color: #333;
+    color: #e0e0e0;
+}
+
+input[type="submit"] {
+    background-color: #1e90ff;
+    border: none;
+    padding: 10px 15px;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 100%;
+    font-size: 16px;
+    text-transform: uppercase;
+}
+
+input[type="submit"]:hover {
+    background-color: #00aced;
+}
+
+/* Footer */
+footer {
+    background: #333;
+    text-align: center;
+    padding: 10px 0;
+    color: #e0e0e0;
+    margin-top: 50px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+input[type="submit"] {
+    background-color: #9291ca; /* Green background */
+    color: white; /* White text */
+    padding: 10px 20px; /* Padding */
+    border: none; /* Remove borders */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer/hand icon */
+    font-size: 16px; /* Font size */
+    transition: background-color 0.3s ease; /* Smooth transition */
+    font-weight: bold; /* Make text bold */
+}
+
+/* Change background color on hover */
+input[type="submit"]:hover {
+    background-color: #44516d; /* Darker green on hover */
+}
+
+/* Increase boldness for headings */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+}
+
+h1 {
+    font-size: 2.5em; /* Responsive font size */
+    color: #947622; /* Green color */
+}
+
+/* Ensure input fields and textareas are also bold */
+input, textarea, select {
+    font-weight: 600;
+}
+
+/* Adjust overall font weight */
+body {
+    font-weight: 400; /* Normal weight for better readability */
+}
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: #333;
+    padding: 10px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+main {
+    padding-top: 60px; /* Adjust this value based on your header height */
+}
+header ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+header ul li {
+    display: inline;
+    margin-right: 20px;
+}
+header ul li a {
+    color: #e0e0e0;
+    text-decoration: none;
+    font-size: 30px;
+    transition: color 0.3s ease;
+}
+header ul li a:hover {
+    color: #ffeb7b;
+    text-decoration: none;
+}
