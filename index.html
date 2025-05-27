@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cryptography Security System</title>
     <link rel="stylesheet" href="style.css">
-  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/seedrandom/3.0.5/seedrandom.min.js"></script>
+
+
 </head>
 
 <body>
@@ -18,6 +20,7 @@
                 <li><a href="#caesar-cipher">Caesar Cipher</a></li>
                 <li><a href="#mono-alphabetic-cipher">Mono Alphabetic Cipher</a></li>
                 <li><a href="#vernam-cipher">Vernam Cipher</a></li>
+                <li><a href="#image-encryption">Image Encryption</a></li>
             </ul>
         </nav>
     </header>
@@ -143,7 +146,7 @@
                             </label>
                         </div>
                         <div class="row">
-                            <label for="substitution-alphabet-input">Substitution Alphabet</label>
+                            <label for="sub+stitution-alphabet-input">Substitution Alphabet</label>
                             <input type="text" id="substitution-alphabet-input" value="QWERTYUIOPASDFGHJKLZXCVBNM">
                         </div>
                         <div class="row">
@@ -227,6 +230,43 @@
                 </div>
             </div>
         </section>
+
+        <section id="image-encryption">
+            <div class="section-title">Image Encryption</div>
+            <div class="container" style="display: flex; gap: 20px; align-items: flex-start; flex-wrap: wrap;">
+                
+                <div class="box">
+                    <h2>Controls</h2>
+                    <form id="image-form" enctype="multipart/form-data">
+                        <div class="row">
+                            <label for="image-file">Select Image</label>
+                            <input type="file" id="image-file" accept="image/*">
+                        </div>
+                        <div class="row">
+                            <label for="image-seed">Enter Seed Key</label>
+                            <input type="text" id="image-seed" required>
+                        </div>
+                        <div class="row">
+                            <label>Action:</label>
+                            <label><input type="radio" name="action" value="encrypt" checked>Encrypt</label>
+                            <label><input type="radio" name="action" value="decrypt">Decrypt</label>
+                        </div>
+                        <input type="submit" value="Submit">
+
+                        
+                    </form>
+                
+                    <div id="image-preview-section" style="display: none;">
+                        <h2>Selected Image</h2>
+                        <img id="selected-image-preview" src="" alt="Selected Image" style="max-width: 150%;">
+                    </div>
+                </div>
+                
+                <div class="box">
+                    <h2>Result</h2>
+                    <img id="result-image" src="" alt="Result" style="max-width: 150%; display: none;">
+                </div>
+        
     </main>
 
     <footer>
@@ -237,6 +277,8 @@
     <script src="keyless.js"></script>
     <script src="mono.js"></script>
     <script src="vernam.js"></script>
+    <script src="image.js"></script>
+   
 </body>
 
 </html>
