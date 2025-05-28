@@ -76,7 +76,7 @@ main {
 }
 .boxx {
     width: 100%;
-    max-width: 500px; /* Increase this from a smaller value like 300px or 400px */
+    max-width: 450px; /* Increase this from a smaller value like 300px or 400px */
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 8px;
