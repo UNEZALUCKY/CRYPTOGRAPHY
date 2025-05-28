@@ -74,6 +74,15 @@ main {
     width: 100%;
     max-width: 300px;
 }
+.boxx {
+    width: 100%;
+    max-width: 500px; /* Increase this from a smaller value like 300px or 400px */
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    background-color: #000c18;
+}
 
 h2 {
     margin-bottom: 15px;
@@ -85,8 +94,8 @@ textarea, input[type="text"], select {
     padding: 10px;
     margin-bottom: 10px;
     border-radius: 5px;
-    border: 1px solid #555;
-    background-color: #333;
+    border: 1px solid #241f2e;
+    background-color: #083544;
     color: #e0e0e0;
 }
 
