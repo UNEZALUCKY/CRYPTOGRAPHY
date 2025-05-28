@@ -1,286 +1,230 @@
-<!DOCTYPE html>
-<html lang="en">
+/* Global Styles */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #121212;
+    color: #e0e0e0;
+    line-height: 1.6;
+}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cryptography Security System</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/seedrandom/3.0.5/seedrandom.min.js"></script>
+header {
+    background: #908b8b;
+    padding: 10px 0;
+    text-align: center;
+}
 
+header ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
 
-</head>
+header ul li {
+    display: inline;
+    margin-right: 20px;
+}
 
-<body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#keyless-cipher">Keyless Cipher</a></li>
-                <li><a href="#caesar-cipher">Caesar Cipher</a></li>
-                <li><a href="#mono-alphabetic-cipher">Mono Alphabetic Cipher</a></li>
-                <li><a href="#vernam-cipher">Vernam Cipher</a></li>
-                <li><a href="#image-encryption">Image Encryption</a></li>
-            </ul>
-        </nav>
-    </header>
+header ul li a {
+    color: #e0e0e0;
+    text-decoration: none;
+    font-size: 18px;
+}
 
-    <main>
-        <section id="home">
-            <h1>Welcome to Cryptography Security System</h1>
-            <h2>
-                Our site is dedicated to exploring various encryption techniques to enhance digital security.
-                We provide tools and information on different cipher methods to help you understand and
-                implement cryptographic solutions.
-            </h2>
-        </section>
+header ul li a:hover {
+    text-decoration: underline;
+}
 
-        <section id="keyless-cipher">
-            <div class="section-title">Keyless Cipher</div>
-            <div class="container">
-                <div class="box">
-                    <h2>Controls</h2>
-                    <form id="keyless-controls">
-                        <div class="row">
-                            <label>
-                                <input type="radio" name="code" value="encode" checked="checked">
-                                Encode
-                            </label>
-                            <label>
-                                <input type="radio" name="code" value="decode">
-                                Decode
-                            </label>
-                        </div>
-                        <div class="row">
-                            <label for="keyless-type">Cipher Type</label>
-                            <select name="keyless-type" id="keyless-type">
-                                <option value="atbash">Atbash Cipher</option>
-                                <option value="rot13">ROT13 Cipher</option>
-                            </select>
-                        </div>
-                        <input type="submit" value="Submit">
-                    </form>
-                </div>
-                <div class="box">
-                    <h2>Plaintext</h2>
-                    <textarea placeholder="Enter plaintext" id="keyless-input-text"></textarea>
-                </div>
-                <div class="box">
-                    <h2>Ciphertext</h2>
-                    <textarea readonly placeholder="Output" id="keyless-output-text"></textarea>
-                </div>
-            </div>
-        </section>
+main {
+    padding: 20px;
+}
 
-        <section id="caesar-cipher">
-            <div class="section-title">Caesar Cipher</div>
-            <div class="container">
-                <div class="box">
-                    <h2>Controls</h2>
-                    <form id="caesar-controls">
-                        <div class="row">
-                            <label>
-                                <input type="radio" name="code" value="encode" checked="checked">
-                                Encode
-                            </label>
-                            <label>
-                                <input type="radio" name="code" value="decode">
-                                Decode
-                            </label>
-                        </div>
-                        <div class="row">
-                            <label for="shift-input">Shift Key</label>
-                            <input type="text" id="shift-input" value="3">
-                        </div>
-                        <div class="row">
-                            <label for="mod-input">Modulo</label>
-                            <input type="text" id="mod-input" value="36">
-                        </div>
-                        <div class="row">
-                            <label for="alphabet-input">Alphabet</label>
-                            <input type="text" id="alphabet-input" value="abcdefghijklmnopqrstuvwxyz0123456789">
-                        </div>
-                        <div class="row">
-                            <label for="letter-case">Letter Case</label>
-                            <select id="letter-case">
-                                <option value="1">Maintain Case</option>
-                                <option value="2">Lower Case</option>
-                                <option value="3">Upper Case</option>
-                            </select>
-                        </div>
-                        <div class="row">
-                            <label for="foreign-chars">Foreign Chars</label>
-                            <select id="foreign-chars">
-                                <option value="1">Remove</option>
-                                <option value="2">Ignore</option>
-                            </select>
-                        </div>
-                        <input type="submit" value="Submit">
-                    </form>
-                </div>
-                <div class="box">
-                    <h2>Plaintext</h2>
-                    <textarea placeholder="Enter plaintext" id="caesar-input-text"></textarea>
-                </div>
-                <div class="box">
-                    <h2>Ciphertext</h2>
-                    <textarea readonly placeholder="Output" id="caesar-output-text"></textarea>
-                </div>
-            </div>
-        </section>
+.section-title {
+    margin: 50px 0 20px;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 4rem;
+    color: #ffeb7b;
+    text-shadow: 3px 3px 6px rgba(73, 165, 165, 0.463), 0 0 10px rgba(255, 215, 0, 0.5);
+    letter-spacing: 0.1em;
+    font-weight: bold;
+    position: relative;
+    z-index: 1;
+    transition: all 0.3s ease;
+}
+.section-title:hover {
+    color: #1e3ba6;
+    transform: scale(1.1);
+    text-shadow: 4px 4px 8px rgba(73, 165, 165, 0.6), 0 0 15px rgba(255, 215, 0, 0.7);
+    letter-spacing: 0.12em;
+    transition: all 0.3s ease-out;
+}
 
-        <section id="mono-alphabetic-cipher">
-            <div class="section-title">Mono Alphabetic Cipher</div>
-            <div class="container">
-                <div class="box">
-                    <h2>Controls</h2>
-                    <form id="mono-controls">
-                        <div class="row">
-                            <label>
-                                <input type="radio" name="code" value="encode" checked="checked">
-                                Encode
-                            </label>
-                            <label>
-                                <input type="radio" name="code" value="decode">
-                                Decode
-                            </label>
-                        </div>
-                        <div class="row">
-                            <label for="sub+stitution-alphabet-input">Substitution Alphabet</label>
-                            <input type="text" id="substitution-alphabet-input" value="QWERTYUIOPASDFGHJKLZXCVBNM">
-                        </div>
-                        <div class="row">
-                            <label for="plain-alphabet-input">Plain Alphabet</label>
-                            <input type="text" id="plain-alphabet-input" value="ABCDEFGHIJKLMNOPQRSTUVWXYZ" readonly>
-                        </div>
-                        <div class="row">
-                            <label for="mono-letter-case">Letter Case</label>
-                            <select id="mono-letter-case">
-                                <option value="1">Maintain Case</option>
-                                <option value="2">Lower Case</option>
-                                <option value="3">Upper Case</option>
-                            </select>
-                        </div>
-                        <div class="row">
-                            <label for="mono-foreign-chars">Foreign Chars</label>
-                            <select id="mono-foreign-chars">
-                                <option value="1">Remove</option>
-                                <option value="2">Ignore</option>
-                            </select>
-                        </div>
-                        <input type="submit" value="Submit">
-                    </form>
-                </div>
-                <div class="box">
-                    <h2>Plaintext</h2>
-                    <textarea placeholder="Enter plaintext" id="mono-input-text"></textarea>
-                </div>
-                <div class="box">
-                    <h2>Ciphertext</h2>
-                    <textarea readonly placeholder="Output" id="mono-output-text"></textarea>
-                </div>
-            </div>
-        </section>
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 20px;
+}
 
-        <section id="vernam-cipher">
-            <div class="section-title">Vernam Cipher</div>
-            <div class="container">
-                <div class="box">
-                    <h2>Controls</h2>
-                    <form id="vernam-controls">
-                        <div class="row">
-                            <label>
-                                <input type="radio" name="code" value="encode" checked="checked">
-                                Encode
-                            </label>
-                            <label>
-                                <input type="radio" name="code" value="decode">
-                                Decode
-                            </label>
-                        </div>
-                        <div class="row">
-                            <label for="vernam-key-input">Key</label>
-                            <input type="text" id="vernam-key-input" placeholder="Enter key (same length as plaintext)">
-                        </div>
-                        <div class="row">
-                            <label for="vernam-letter-case">Letter Case</label>
-                            <select id="vernam-letter-case">
-                                <option value="1">Maintain Case</option>
-                                <option value="2">Lower Case</option>
-                                <option value="3">Upper Case</option>
-                            </select>
-                        </div>
-                        <div class="row">
-                            <label for="vernam-foreign-chars">Foreign Chars</label>
-                            <select id="vernam-foreign-chars">
-                                <option value="1">Remove</option>
-                                <option value="2">Ignore</option>
-                            </select>
-                        </div>
-                        <input type="submit" value="Submit">
-                    </form>
-                </div>
-                <div class="box">
-                    <h2>Plaintext</h2>
-                    <textarea placeholder="Enter plaintext" id="vernam-input-text"></textarea>
-                </div>
-                <div class="box">
-                    <h2>Ciphertext</h2>
-                    <textarea readonly placeholder="Output" id="vernam-output-text"></textarea>
-                </div>
-            </div>
-        </section>
+.box {
+    background-color: #222;
+    border-radius: 8px;
+    padding: 20px;
+    width: 100%;
+    max-width: 300px;
+}
+.boxx {
+    width: 100%;
+    max-width: 450px; /* Increase this from a smaller value like 300px or 400px */
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    background-color: #000c18;
+}
 
-        <section id="image-encryption">
-            <div class="section-title">Image Encryption</div>
-            <div class="container" style="display: flex; gap: 20px; align-items: flex-start; flex-wrap: wrap;">
-                
-                <div class="boxx">
-                    <h2>Controls</h2>
-                    <form id="image-form" enctype="multipart/form-data">
-                        <div class="row">
-                            <label for="image-file">Select Image</label>
-                            <input type="file" id="image-file" accept="image/*">
-                        </div>
-                        <div class="row">
-                            <label for="image-seed">Enter Seed Key</label>
-                            <input type="text" id="image-seed" required>
-                        </div>
-                        <div class="row">
-                            <label>Action:</label>
-                            <label><input type="radio" name="action" value="encrypt" checked>Encrypt</label>
-                            <label><input type="radio" name="action" value="decrypt">Decrypt</label>
-                        </div>
-                        <input type="submit" value="Submit">
-                    </form>
-                
-                    <div id="image-preview-section" style="display: none;">
-                        <h2>Selected Image</h2>
-                        <img id="selected-image-preview" src="" alt="Selected Image" style="max-width: 100%;">
-                    </div>
-                </div>
-                
-                <div class="boxx">
-                    <h2>Result</h2>
-                    <img id="result-image" src="" alt="Result" style="max-width: 100%; display: none;">
-                    <a id="download-button" href="#" download="encrypted_image.png" style="display: none;">
-                    <button type="button">Download Result Image</button>
-</a>
+h2 {
+    margin-bottom: 15px;
+    color: #1e90ff;
+}
 
-                </div>
-                
-    </main>
+textarea, input[type="text"], select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #241f2e;
+    background-color: #083544;
+    color: #e0e0e0;
+}
 
-    <footer>
-        <p>&copy; 2024 Cryptography Security System. All rights reserved.</p>
-    </footer>
+input[type="submit"] {
+    background-color: #1e90ff;
+    border: none;
+    padding: 10px 15px;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 100%;
+    font-size: 16px;
+    text-transform: uppercase;
+}
 
-    <script src="caesar.js"></script>
-    <script src="keyless.js"></script>
-    <script src="mono.js"></script>
-    <script src="vernam.js"></script>
-    <script src="image.js"></script>
-   
-</body>
+input[type="submit"]:hover {
+    background-color: #00aced;
+}
 
-</html>
+/* Footer */
+footer {
+    background: #333;
+    text-align: center;
+    padding: 10px 0;
+    color: #e0e0e0;
+    margin-top: 50px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+input[type="submit"] {
+    background-color: #9291ca; /* Green background */
+    color: white; /* White text */
+    padding: 10px 20px; /* Padding */
+    border: none; /* Remove borders */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer/hand icon */
+    font-size: 16px; /* Font size */
+    transition: background-color 0.3s ease; /* Smooth transition */
+    font-weight: bold; /* Make text bold */
+}
+
+/* Change background color on hover */
+input[type="submit"]:hover {
+    background-color: #44516d; /* Darker green on hover */
+}
+
+/* Increase boldness for headings */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+}
+
+h1 {
+    font-size: 2.5em; /* Responsive font size */
+    color: #947622; /* Green color */
+}
+
+/* Ensure input fields and textareas are also bold */
+input, textarea, select {
+    font-weight: 600;
+}
+
+/* Adjust overall font weight */
+body {
+    font-weight: 400; /* Normal weight for better readability */
+}
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: #333;
+    padding: 10px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+main {
+    padding-top: 60px; /* Adjust this value based on your header height */
+}
+header ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+header ul li {
+    display: inline;
+    margin-right: 20px;
+}
+header ul li a {
+    color: #e0e0e0;
+    text-decoration: none;
+    font-size: 30px;
+    transition: color 0.3s ease;
+}
+header ul li a:hover {
+    color: #ffeb7b;
+    text-decoration: none;
+}
+#image-encryption .container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: space-around;
+}
+.button {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #007BFF; /* Bootstrap-like blue */
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #0056b3; /* Darker on hover */
+}
+
+.button:active {
+    background-color: #004494; /* Even darker on click */
+}
