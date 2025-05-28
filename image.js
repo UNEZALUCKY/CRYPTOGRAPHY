@@ -1,23 +1,28 @@
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener("DOMContentLoaded", function () {
     const form = document.getElementById('image-form');
-    const imageInput = document.getElementById('image-file');
+    const fileInput = document.getElementById('image-file');
     const seedInput = document.getElementById('image-seed');
     const resultImage = document.getElementById('result-image');
-    const previewSection = document.getElementById('image-preview-section');
     const selectedImagePreview = document.getElementById('selected-image-preview');
-    const downloadButton = document.getElementById('download-button');
+    const imagePreviewSection = document.getElementById('image-preview-section');
 
-    let originalImage = null;
+    // Create and insert download button
+    const downloadButton = document.createElement('a');
+    downloadButton.textContent = 'Download Result';
+    downloadButton.style.display = 'none';
+    downloadButton.className = 'button'; // optional style class
+    resultImage.insertAdjacentElement('afterend', downloadButton);
 
-    imageInput.addEventListener('change', function () {
-        const file = imageInput.files[0];
+    let originalImage = new Image();
+
+    fileInput.addEventListener('change', function () {
+        const file = fileInput.files[0];
         if (file) {
             const reader = new FileReader();
             reader.onload = function (e) {
-                selectedImagePreview.src = e.target.result;
-                previewSection.style.display = 'block';
-                originalImage = new Image();
                 originalImage.src = e.target.result;
+                selectedImagePreview.src = e.target.result;
+                imagePreviewSection.style.display = 'block';
             };
             reader.readAsDataURL(file);
         }
@@ -44,29 +49,34 @@ document.addEventListener('DOMContentLoaded', function () {
             const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
             const data = imageData.data;
 
-            // Seed random
+            // Reset seed
             Math.seedrandom(seed);
 
-            for (let i = 0; i < data.length; i++) {
-                const rand = Math.floor(Math.random() * 256);
-                data[i] = data[i] ^ rand; // XOR operation
+            for (let i = 0; i < data.length; i += 4) {
+                const r = Math.floor(Math.random() * 256);
+                const g = Math.floor(Math.random() * 256);
+                const b = Math.floor(Math.random() * 256);
+
+                // XOR RGB only; leave alpha untouched
+                data[i] ^= r;       // Red
+                data[i + 1] ^= g;   // Green
+                data[i + 2] ^= b;   // Blue
+                // data[i + 3] untouched (alpha)
             }
 
             ctx.putImageData(imageData, 0, 0);
-
             const dataUrl = canvas.toDataURL();
 
-            // Set result image
             resultImage.src = dataUrl;
             resultImage.style.display = 'block';
 
-            // Setup download button
+            // Setup download
             downloadButton.href = dataUrl;
             downloadButton.download = action === 'encrypt' ? 'encrypted_image.png' : 'decrypted_image.png';
             downloadButton.style.display = 'inline-block';
         };
 
-        // Re-trigger onload in case the image is already loaded
+        // Trigger onload if already loaded
         if (originalImage.complete) {
             originalImage.onload();
         }
