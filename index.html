@@ -235,7 +235,7 @@
             <div class="section-title">Image Encryption</div>
             <div class="container" style="display: flex; gap: 20px; align-items: flex-start; flex-wrap: wrap;">
                 
-                <div class="box">
+                <div class="boxx">
                     <h2>Controls</h2>
                     <form id="image-form" enctype="multipart/form-data">
                         <div class="row">
@@ -252,25 +252,27 @@
                             <label><input type="radio" name="action" value="decrypt">Decrypt</label>
                         </div>
                         <input type="submit" value="Submit">
-
-                        
                     </form>
                 
                     <div id="image-preview-section" style="display: none;">
                         <h2>Selected Image</h2>
-                        <img id="selected-image-preview" src="" alt="Selected Image" style="max-width: 150%;">
+                        <img id="selected-image-preview" src="" alt="Selected Image" style="max-width: 100%;">
                     </div>
                 </div>
                 
-                <div class="box">
+                <div class="boxx">
                     <h2>Result</h2>
-                    <img id="result-image" src="" alt="Result" style="max-width: 150%; display: none;">
+                    <img id="result-image" src="" alt="Result" style="max-width: 100%; display: none;">
+                    <a id="download-button" href="#" download="encrypted_image.png" style="display: none;">
+                    <button type="button">Download Result Image</button>
+</a>
+
                 </div>
-        
+                
     </main>
 
     <footer>
-        <p>&copy; NEZA Cryptography Security System. All rights reserved.</p>
+        <p>&copy; 2024 Cryptography Security System. All rights reserved.</p>
     </footer>
 
     <script src="caesar.js"></script>
