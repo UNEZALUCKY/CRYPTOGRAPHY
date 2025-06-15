@@ -10,66 +10,73 @@ monoEncodeOrDecode.forEach((option) => {
     option.addEventListener("click", () => {
         if (option.value === "encode") {
             monoInputText.placeholder = "Enter plaintext";
-        } else {
+            monoOutputText.placeholder = "Output";
+            monoInputText.value = "";
+            monoOutputText.textContent = "";
+        } else if (option.value === "decode") {
             monoInputText.placeholder = "Enter ciphertext";
+            monoOutputText.placeholder = "Output";
+            monoInputText.value = "";
+            monoOutputText.textContent = "";
         }
-        monoInputText.value = "";
-        monoOutputText.value = "";
     });
 });
 
 monoForm.addEventListener("submit", (event) => {
     event.preventDefault();
 
-    const plainAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     let inputTextValue = monoInputText.value;
-    let selectedOption = Array.from(monoEncodeOrDecode).find((option) => option.checked).value;
-    let substitutionAlphabet = substitutionAlphabetInput.value.toUpperCase();
+    let selectedOption = Array.from(monoEncodeOrDecode).find((option) => option.checked);
+    let substitutionAlphabetValue = substitutionAlphabetInput.value.toUpperCase();
     let letterCaseValue = monoLetterCase.value;
     let foreignCharsValue = monoForeignChars.value;
 
-    // Validation
-    if (substitutionAlphabet.length !== 26 || !/^[A-Z]+$/.test(substitutionAlphabet)) {
-        alert("Substitution alphabet must be exactly 26 uppercase A-Z letters.");
-        return;
+    const plainAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+    function removeForeignChars(input) {
+        return input.replace(/[^a-zA-Z0-9 ]/g, "");
     }
 
-    // Remove foreign characters if selected
-    if (foreignCharsValue == 1) {
-        inputTextValue = inputTextValue.replace(/[^a-zA-Z\s]/g, "");
-    }
-
-    // Core logic
-    let result = "";
-
-    for (let char of inputTextValue) {
-        let isLower = char === char.toLowerCase();
-        let upperChar = char.toUpperCase();
-        let index;
-
-        if (/[A-Z]/i.test(char)) {
-            if (selectedOption === "encode") {
-                index = plainAlphabet.indexOf(upperChar);
-                char = substitutionAlphabet[index];
-            } else if (selectedOption === "decode") {
-                index = substitutionAlphabet.indexOf(upperChar);
-                char = plainAlphabet[index];
-            }
-
-            if (isLower && char) {
-                char = char.toLowerCase();
-            }
+    function monoAlphabeticCipher(mode, text, substitutionAlphabet, foreignChars) {
+        if (foreignChars == 1) {
+            text = removeForeignChars(text);
         }
 
-        result += char || "";
+        let result = "";
+
+        for (let i = 0; i < text.length; i++) {
+            let char = text.charAt(i);
+            let isLower = char === char.toLowerCase();
+            let upperChar = char.toUpperCase();
+
+            if (plainAlphabet.includes(upperChar)) {
+                if (mode === "encode") {
+                    let index = plainAlphabet.indexOf(upperChar);
+                    char = substitutionAlphabet[index];
+                } else if (mode === "decode") {
+                    let index = substitutionAlphabet.indexOf(upperChar);
+                    char = plainAlphabet[index];
+                }
+
+                // Preserve case
+                if (isLower) {
+                    char = char.toLowerCase();
+                }
+            }
+
+            result += char;
+        }
+
+        return result;
     }
 
-    // Adjust case based on selection
+    let cipherOutput = monoAlphabeticCipher(selectedOption.value, inputTextValue, substitutionAlphabetValue, foreignCharsValue);
+
     if (letterCaseValue == 2) {
-        result = result.toLowerCase();
+        cipherOutput = cipherOutput.toLowerCase();
     } else if (letterCaseValue == 3) {
-        result = result.toUpperCase();
+        cipherOutput = cipherOutput.toUpperCase();
     }
 
-    monoOutputText.value = result;
+    monoOutputText.textContent = cipherOutput;
 });
