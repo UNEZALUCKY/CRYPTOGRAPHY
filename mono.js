@@ -10,15 +10,11 @@ monoEncodeOrDecode.forEach((option) => {
     option.addEventListener("click", () => {
         if (option.value === "encode") {
             monoInputText.placeholder = "Enter plaintext";
-            monoOutputText.placeholder = "Output";
-            monoInputText.value = "";
-            monoOutputText.textContent = "";
-        } else if (option.value === "decode") {
+        } else {
             monoInputText.placeholder = "Enter ciphertext";
-            monoOutputText.placeholder = "Output";
-            monoInputText.value = "";
-            monoOutputText.textContent = "";
         }
+        monoInputText.value = "";
+        monoOutputText.textContent = "";
     });
 });
 
@@ -31,40 +27,36 @@ monoForm.addEventListener("submit", (event) => {
     let letterCaseValue = monoLetterCase.value;
     let foreignCharsValue = monoForeignChars.value;
 
-    const plainAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-
     function removeForeignChars(input) {
-        return input.replace(/[^a-zA-Z0-9 ]/g, "");
+        const regex = /[^a-zA-Z0-9 ]/g;
+        return input.replace(regex, "");
     }
 
     function monoAlphabeticCipher(mode, text, substitutionAlphabet, foreignChars) {
+        const plainAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        let result = "";
+
         if (foreignChars == 1) {
             text = removeForeignChars(text);
         }
 
-        let result = "";
-
         for (let i = 0; i < text.length; i++) {
-            let char = text.charAt(i);
-            let isLower = char === char.toLowerCase();
+            let char = text[i];
             let upperChar = char.toUpperCase();
 
             if (plainAlphabet.includes(upperChar)) {
                 if (mode === "encode") {
                     let index = plainAlphabet.indexOf(upperChar);
-                    char = substitutionAlphabet[index];
+                    let cipherChar = substitutionAlphabet[index];
+                    result += (char === char.toLowerCase()) ? cipherChar.toLowerCase() : cipherChar;
                 } else if (mode === "decode") {
                     let index = substitutionAlphabet.indexOf(upperChar);
-                    char = plainAlphabet[index];
+                    let plainChar = plainAlphabet[index];
+                    result += (char === char.toLowerCase()) ? plainChar.toLowerCase() : plainChar;
                 }
-
-                // Preserve case
-                if (isLower) {
-                    char = char.toLowerCase();
-                }
+            } else {
+                result += char; // keep punctuation or spaces
             }
-
-            result += char;
         }
 
         return result;
