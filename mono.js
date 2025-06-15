@@ -10,61 +10,66 @@ monoEncodeOrDecode.forEach((option) => {
     option.addEventListener("click", () => {
         if (option.value === "encode") {
             monoInputText.placeholder = "Enter plaintext";
-            monoOutputText.placeholder = "Output";
-            monoInputText.value = "";
-            monoOutputText.textContent = "";
-        } else if (option.value === "decode") {
+        } else {
             monoInputText.placeholder = "Enter ciphertext";
-            monoOutputText.placeholder = "Output";
-            monoInputText.value = "";
-            monoOutputText.textContent = "";
         }
+        monoInputText.value = "";
+        monoOutputText.value = "";
     });
 });
 
 monoForm.addEventListener("submit", (event) => {
     event.preventDefault();
 
+    const plainAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     let inputTextValue = monoInputText.value;
-    let selectedOption = Array.from(monoEncodeOrDecode).find((option) => option.checked);
-    let substitutionAlphabetValue = substitutionAlphabetInput.value;
+    let selectedOption = Array.from(monoEncodeOrDecode).find((option) => option.checked).value;
+    let substitutionAlphabet = substitutionAlphabetInput.value.toUpperCase();
     let letterCaseValue = monoLetterCase.value;
     let foreignCharsValue = monoForeignChars.value;
 
-    function monoAlphabeticCipher(decode, text, substitutionAlphabet, foreignChars) {
-        const plainAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        let result = "";
-        if (foreignChars == 1) {
-            text = removeForeignChars(text);
-        }
-        substitutionAlphabet = substitutionAlphabet.toUpperCase();
+    // Validation
+    if (substitutionAlphabet.length !== 26 || !/^[A-Z]+$/.test(substitutionAlphabet)) {
+        alert("Substitution alphabet must be exactly 26 uppercase A-Z letters.");
+        return;
+    }
 
-        for (let i = 0; i < text.length; i++) {
-            let char = text.charAt(i);
-            let index = plainAlphabet.indexOf(char.toUpperCase());
+    // Remove foreign characters if selected
+    if (foreignCharsValue == 1) {
+        inputTextValue = inputTextValue.replace(/[^a-zA-Z\s]/g, "");
+    }
 
-            if (decode === "decode") {
-                index = substitutionAlphabet.indexOf(char.toUpperCase());
-                char = plainAlphabet[index] || char;
-            } else {
-                char = substitutionAlphabet[index] || char;
+    // Core logic
+    let result = "";
+
+    for (let char of inputTextValue) {
+        let isLower = char === char.toLowerCase();
+        let upperChar = char.toUpperCase();
+        let index;
+
+        if (/[A-Z]/i.test(char)) {
+            if (selectedOption === "encode") {
+                index = plainAlphabet.indexOf(upperChar);
+                char = substitutionAlphabet[index];
+            } else if (selectedOption === "decode") {
+                index = substitutionAlphabet.indexOf(upperChar);
+                char = plainAlphabet[index];
             }
 
-            result += char;
+            if (isLower && char) {
+                char = char.toLowerCase();
+            }
         }
-        return result;
+
+        result += char || "";
     }
 
-    function removeForeignChars(input) {
-        const regex = /[^a-zA-Z0-9 ]/g;
-        return input.replace(regex, "");
-    }
-
-    let cipherOutput = monoAlphabeticCipher(selectedOption.value, inputTextValue, substitutionAlphabetValue, foreignCharsValue);
+    // Adjust case based on selection
     if (letterCaseValue == 2) {
-        cipherOutput = cipherOutput.toLowerCase();
+        result = result.toLowerCase();
     } else if (letterCaseValue == 3) {
-        cipherOutput = cipherOutput.toUpperCase();
+        result = result.toUpperCase();
     }
-    monoOutputText.textContent = cipherOutput;
+
+    monoOutputText.value = result;
 });
